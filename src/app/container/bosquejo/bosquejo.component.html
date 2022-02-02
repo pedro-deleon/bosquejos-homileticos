@@ -1,0 +1,100 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <ng-container *ngIf="bosquejo.nombreExpositor as nombre">
+      <div class="elemento título">
+        <h1> {{nombre}}</h1>
+      </div>
+    </ng-container>
+    <span class="spacer"></span>
+    <ng-container *ngIf="(userService.isLoggedIn$ | async) 
+    && (bosquejoService.isBosquejoFromUser(bosquejo.idUsuario))">
+      <mat-icon class="actions" aria-hidden="false" aria-label="Delete" (click)="onDeleteBosquejo(bosquejo)">delete
+      </mat-icon>
+      <mat-icon class="actions" aria-hidden="false" aria-label="Edit" [routerLink]="['/form','editar',bosquejo.id]">
+        edit
+      </mat-icon>
+    </ng-container>
+    <mat-icon class="actions" aria-hidden="false" aria-label="Download" (click)="onClickDownload()">download</mat-icon>
+
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+
+<div #bosquejoDOM>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <ng-container *ngIf="bosquejo.titulo as tituloBosquejo">
+        <div class="elemento título">
+          <h1>{{tituloBosquejo}}</h1>
+        </div>
+      </ng-container>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card>
+    <ng-container *ngIf="bosquejo">
+      <ng-container *ngIf="bosquejo.tema as tema">
+        <div class="elemento tema">
+          <h2>Tema</h2>
+          {{tema}}
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="bosquejo.textoBase as textoBase">
+        <div class="elemento texto-base">
+          <h2>Texto Base</h2>
+          {{bosquejo.textoBase}}
+        </div>
+      </ng-container>
+
+
+      <div class="elemento introduccion">
+        <h2>Introducción</h2>
+        <ul>
+          <ng-container *ngFor="let punto of bosquejo.introduccion">
+            <li>
+              {{punto}}
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+
+
+      <div class="elemento desarrollo">
+        <h2>Desarrollo</h2>
+        <h3>{{bosquejo.desarrollo.tituloDesarrollo}}</h3>
+        <ol>
+          <ng-container *ngFor="let s of bosquejo.desarrollo.secciones">
+            <li>
+              {{s.punto}}
+              <ul>
+                <ng-container *ngFor="let inciso of s.incisos">
+                  <li>
+                    {{inciso}}
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ol>
+      </div>
+
+      <div class="elemento conclusion">
+        <h2>Conclusión</h2>
+        <ul>
+          <ng-container *ngFor="let punto of bosquejo.conclusion">
+            <li>
+              {{punto}}
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+
+      <div class="elemento llamado">
+        <h2>Llamado</h2>
+        {{bosquejo.llamado}}
+      </div>
+    </ng-container>
+  </mat-card>
+</div>

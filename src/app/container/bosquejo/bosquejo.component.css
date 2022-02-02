@@ -1,0 +1,24 @@
+.bosquejo-container{
+  background-color: #cbcbcb;
+}
+
+.elemento{
+  margin: 20px;
+}
+
+.elemento h2{
+  margin-bottom: 0px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.actions{
+  margin-right: 20px;
+}
+
+.actions:hover{
+  color: #c4ddf6;
+  cursor: pointer;
+}

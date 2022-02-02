@@ -1,0 +1,29 @@
+<ng-container *ngIf="userService.isLoggedIn$ | async">
+  <mat-button-toggle-group  class="buttons" name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle  class="button-preview" value="bold" (click)="cargarMisBoquejos()" >Ver los mios</mat-button-toggle>
+    <mat-button-toggle class="button-preview" value="italic" (click)="cargarBosquejosInvitado()">Ver todos</mat-button-toggle>
+  </mat-button-toggle-group>
+</ng-container>
+
+<ng-container *ngFor="let preview of bosquejos$ | async;">
+  <mat-card  class="preview-container" routerLink="bosquejo/{{preview.id}}">
+    <mat-card-title>{{preview.titulo}}</mat-card-title>
+    <mat-card-subtitle>{{preview.nombreExpositor}}</mat-card-subtitle>
+    <mat-card-content>{{preview.fecha.toDate() | date:'short'}}</mat-card-content>
+  </mat-card>
+</ng-container>
+
+<ng-container *ngIf="userService.isLoggedIn$ | async">
+  <mat-card  class="preview-container container-agregar" [routerLink]="['/form','agregar']">
+    <mat-icon
+      color="accent"
+      class="boton-agregar"
+      aria-hidden="false"
+      aria-label="Add">
+      add
+    </mat-icon>
+  </mat-card>
+</ng-container>
+
+
+

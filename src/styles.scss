@@ -1,0 +1,19 @@
+@use 'custom-palette' as cp;
+@import "~firebaseui/dist/firebaseui.css";
+
+$my-primary: cp.$lightblue-palette (cp.$lightblue-palette, 100);
+$my-accent: cp.$lightblue-palette (cp.$lightblue-palette,);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Neucha', cursive;
+  background-color: #ececed
+}
+
+.container {
+  margin: 30px;
+}

@@ -1,0 +1,153 @@
+<mat-card class="card-form">
+  <form [formGroup]="bosquejoForm" (ngSubmit)="onSubmit()">
+    <div class="container-flex-form">
+      <mat-form-field class="input flex-grow-2" appearance="fill">
+        <mat-label for="nombre-expositor">Nombre del Expositor</mat-label>
+        <input required id="nombre-expositor" matInput type="text" formControlName="nombreExpositor">
+      </mat-form-field>
+
+      <mat-form-field class="input flex-grow-1" appearance="fill">
+        <mat-label for="fecha">Fecha</mat-label>
+
+
+        <input matInput [matDatepicker]="picker" formControlName="fecha" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="container-flex-form">
+
+      <mat-form-field class="input flex-grow-1" appearance="fill">
+        <mat-label for="titulo">Título</mat-label>
+        <input required id="titulo" matInput formControlName="titulo">
+      </mat-form-field>
+
+      <mat-form-field class="input flex-grow-1" appearance="fill">
+        <mat-label for="tema">Tema</mat-label>
+        <input required id="tema" matInput formControlName="tema">
+      </mat-form-field>
+    </div>
+
+
+    <div class="container-flex-form">
+      <mat-form-field class="input flex-grow-1" appearance="fill">
+        <mat-label for="texto-base">Texto Base</mat-label>
+        <input required id="texto-base" matInput formControlName="textoBase">
+      </mat-form-field>
+    </div>
+
+    <div class="container-flex-form">
+      <mat-form-field class="input flex-grow-1" appearance="fill">
+        <mat-label for="introduccion">Introducción</mat-label>
+        <mat-chip-list id="introduccion"
+                       formControlName="introduccion"
+                       #chipListIntroduccion
+                       aria-label="Seleccionar punto">
+          <mat-chip
+            *ngFor="let punto of bosquejoForm.get('introduccion')?.value"
+            [selectable]="selectable"
+            [removable]="removable" (removed)="remove(punto, 'introduccion')">
+            {{punto}}
+            <button matChipRemove *ngIf="removable">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="Nuevo punto..."
+
+                 [matChipInputFor]="chipListIntroduccion"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event,'introduccion')">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+
+    <mat-card-title>
+      Desarrollo
+    </mat-card-title>
+
+    <div formGroupName="desarrollo">
+      <div class="container-flex-form">
+        <mat-form-field class="input flex-grow-1" appearance="fill">
+          <mat-label for="titulo-desarollo">Título</mat-label>
+          <input id="titulo-desarollo" matInput formControlName="tituloDesarrollo">
+        </mat-form-field>
+      </div>
+
+      <ng-container *ngFor="let seccion of secciones?.controls; let i = index">
+        <app-puntos-desarrollo id="{{i}}" #puntoDesarrolloComponent
+                               [punto] = seccion.value?.punto
+                               [incisos]= seccion.value?.incisos
+                               (delete)="quitarPuntoDesarrollo(i)">
+
+        </app-puntos-desarrollo>
+      </ng-container>
+    </div>
+
+
+
+    <button type="button"
+            class="boton-agregar-punto"
+            mat-button
+            (click)="agregarPuntoDesarrollo();">
+      <mat-icon
+        color="primary"
+        class="boton-agregar-punto"
+        aria-hidden="false"
+        aria-label="Add"
+      >add
+      </mat-icon>
+    </button>
+
+
+    <div class="container-flex-form">
+      <mat-form-field class="input flex-grow-1" appearance="fill">
+        <mat-label for="conclusion">Conclusión</mat-label>
+        <mat-chip-list id="conclusion" #chipListConclusion aria-label="Seleccionar punto">
+          <mat-chip *ngFor="let punto of bosquejoForm.get('conclusion')?.value" [selectable]="selectable"
+                    [removable]="removable" (removed)="remove(punto, 'conclusion')">
+            {{punto}}
+            <button matChipRemove *ngIf="removable">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="Nuevo punto..."
+                 [matChipInputFor]="chipListConclusion"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event,'conclusion')">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+
+
+    <div class="container-flex-form">
+      <mat-form-field class="input flex-grow-1" appearance="fill">
+        <mat-label>Llamado</mat-label>
+        <mat-chip-list #chipListLlamado aria-label="Seleccionar punto">
+          <mat-chip *ngFor="let punto of bosquejoForm.get('llamado')?.value" [selectable]="selectable"
+                    [removable]="removable" (removed)="remove(punto, 'llamado')">
+            {{punto}}
+            <button matChipRemove *ngIf="removable">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="Nuevo punto..."
+                 [matChipInputFor]="chipListLlamado"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event,'llamado')">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+
+
+
+    <button type="submit" color="primary" class="boton-submit" mat-raised-button>
+      Guardar
+    </button>
+
+
+  </form>
+</mat-card>

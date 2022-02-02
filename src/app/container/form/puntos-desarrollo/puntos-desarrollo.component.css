@@ -1,0 +1,24 @@
+.container-flex-form{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.input{
+  margin: 5px;
+}
+
+.button-delete{
+  margin-left: 15px;
+  margin-top: 25px;
+}
+
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+
+.flex-grow-2 {
+  flex-grow: 3;
+}

@@ -1,0 +1,34 @@
+<div class="container-flex-form">
+  <mat-form-field class="input flex-grow-1" appearance="fill">
+    <mat-label>Punto</mat-label>
+    <input type="text" [(ngModel)]="puntoModel" matInput>
+  </mat-form-field>
+
+
+  <mat-form-field class="input flex-grow-2" appearance="fill">
+    <mat-label>Incisos</mat-label>
+    <mat-chip-list #chipListIncisos aria-label="Seleccionar punto">
+      <ng-container *ngIf="incisos">
+        <mat-chip *ngFor="let punto of incisos;" [selectable]="selectable"
+                  [removable]="removable" (removed)="remove(punto)">
+          {{punto}}
+          <button matChipRemove *ngIf="removable;">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </ng-container>
+      <input placeholder="Nuevo punto..."
+             [matChipInputFor]="chipListIncisos"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div class="button-delete">
+    <button (click)="delete()" type="button" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+
+</div>

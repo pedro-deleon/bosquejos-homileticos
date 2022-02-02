@@ -1,0 +1,43 @@
+<mat-toolbar class="toolbar" color="primary">
+  <span class="home" routerLink="/preview">Bosquejos Homiléticos</span>
+  <span class="spacer"></span>
+  <button class="iniciar-sesion" mat-raised-button color="accent" routerLink="/login" *ngIf="user.isLoggedOut$ | async">
+    Iniciar Sesión
+  </button>
+
+  <ng-container *ngIf="user.isLoggedIn$ | async">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <ng-container *ngIf="(user.pictureUrl$ | async) as pictureUrl else pictureDefault">
+        <img class="user-avatar" [src]="pictureUrl">
+      </ng-container>
+      <ng-template #pictureDefault>
+        <img class="user-avatar" src="https://image.flaticon.com/icons/png/512/1160/1160040.png">
+      </ng-template>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
+    </mat-menu>
+  </ng-container>
+
+</mat-toolbar>
+<div class="container">
+  <loading [detectRoutingOngoing]="true"></loading>
+  <router-outlet></router-outlet>
+</div>
+
+
+<div class="footer">
+
+  <div class="links">
+    <ul class="links-ul">
+      <li routerLink="/about">Acerca de</li>
+      <li routerLink="/contacto">Contacto</li>
+    </ul>
+  </div>
+
+
+  <div class="help">
+
+  </div>
+
+</div>
