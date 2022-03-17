@@ -35,7 +35,7 @@ export class BosquejoComponent implements OnInit {
   }
 
   onClickDownload() {
-    this.descargaBosquejo.descargarBosquejoComoImagenPNG(this.bosquejoElementRef)
+    this.descargaBosquejo.descargarBosquejoComoImagenPNG(this.bosquejoElementRef, this.bosquejo.titulo)
       .subscribe({
         next: res => console.log(res),
         error: error => console.log(error)

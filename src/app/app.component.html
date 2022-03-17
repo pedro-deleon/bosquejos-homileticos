@@ -22,12 +22,11 @@
 </mat-toolbar>
 <div class="container">
   <loading [detectRoutingOngoing]="true"></loading>
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate()"></router-outlet>
 </div>
 
 
-<div class="footer">
-
+<div class="footer" >
   <div class="links">
     <ul class="links-ul">
       <li routerLink="/about">Acerca de</li>
@@ -35,9 +34,9 @@
     </ul>
   </div>
 
-
   <div class="help">
-
+    <a href="https://github.com/pedro-deleon/bosquejos-homileticos" target="_blank">
+      <img src="/assets/GitHub-Mark-64px.png" target="_self" alt="github logo" >
+    </a>
   </div>
-
 </div>

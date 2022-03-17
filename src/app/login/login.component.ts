@@ -7,6 +7,7 @@ import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 import {Router} from "@angular/router";
 import Config = firebaseui.auth.Config;
 import FacebookAuthProvider = firebase.auth.FacebookAuthProvider;
+import {PreviewComponent} from "../container/preview/preview.component";
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         ],
         callbacks: {
-          signInSuccessWithAuthResult: this.onLoginSuccesful.bind(this)
+          signInSuccessWithAuthResult: res => this.onLoginSuccesful(res)
         }
       };
 
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onLoginSuccesful(result: any) {
-    console.log(result);
+    console.log(result.user.uid);
     this.router.navigateByUrl("/preview");
     return true;
   }

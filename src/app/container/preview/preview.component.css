@@ -18,13 +18,17 @@
 }
 
 .container-agregar {
+  display: flex;
   height: 80px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
+
 .boton-agregar {
-  font-size: xxx-large;
-  text-shadow: #C4DDF6 0px 0px 5px, #C4DDF6 0px 0px 10px, #C4DDF6 0px 0px 15px, #C4DDF6 0px 0px 20px, #C4DDF6 0px 0px 30px, #C4DDF6 0px 0px 40px, #C4DDF6 0px 0px 50px, #C4DDF6 0px 0px 75px;
+  font-size: xx-large;
+  position: relative;
+  bottom: 5px;
 }
 
 

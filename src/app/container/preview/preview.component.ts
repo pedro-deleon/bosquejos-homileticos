@@ -14,7 +14,9 @@ export class PreviewComponent implements OnInit {
   bosquejos$: Observable<Bosquejo[]> | undefined;
   idBosquejo: string = '';
 
-  constructor(private bosquejoService: BosquejoService,
+
+
+  constructor(public bosquejoService: BosquejoService,
               public userService: UserService) {
 
     this.userService.isLoggedIn$.subscribe(value => {

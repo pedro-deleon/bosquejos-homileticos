@@ -9,18 +9,20 @@
   <mat-card  class="preview-container" routerLink="bosquejo/{{preview.id}}">
     <mat-card-title>{{preview.titulo}}</mat-card-title>
     <mat-card-subtitle>{{preview.nombreExpositor}}</mat-card-subtitle>
-    <mat-card-content>{{preview.fecha.toDate() | date:'short'}}</mat-card-content>
+    <mat-card-content>{{preview.fecha.toDate() | date:'mediumDate'}}</mat-card-content>
   </mat-card>
 </ng-container>
 
-<ng-container *ngIf="userService.isLoggedIn$ | async">
+<ng-container *ngIf="userService.isLoggedIn$  | async">
   <mat-card  class="preview-container container-agregar" [routerLink]="['/form','agregar']">
+
+    <div>Agregar Bosquejo</div>
     <mat-icon
       color="accent"
       class="boton-agregar"
       aria-hidden="false"
       aria-label="Add">
-      add
+      note_add
     </mat-icon>
   </mat-card>
 </ng-container>
